@@ -4,11 +4,11 @@ export const ButtonContainer = styled.button`
     widht: 100%;
     height: 100%;
     background-color: pink;
-    padding: 1rem;
+    padding: .7rem;
     border-radius: 2rem;
     margin-top: 1rem;
-    font-size: 1.5rem;
-
+    font-size: 1rem;
+    margin: auto;
 
     &&:hover{
         opacity: 0.7;

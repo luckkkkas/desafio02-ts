@@ -1,16 +1,11 @@
-import { 
-  Center,
-  ChakraProvider,
-  Input,
-  Box,
-  Button
-} from '@chakra-ui/react'
+import { ChakraProvider } from '@chakra-ui/react'
 import { Login } from './pages/login';
+import { Home } from './pages/home';
 
 function App() {
   return (
     <ChakraProvider>
-      <Login />
+      <Home />
     </ChakraProvider>
   );
 }
