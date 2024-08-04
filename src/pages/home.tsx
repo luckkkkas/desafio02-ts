@@ -1,12 +1,9 @@
-import { Footer } from "../components/Footer"
-import { Header } from "../components/Header/Header"
+import { Layout } from "./layout"
 
 export const Home = () => {
     return (
-        <>
-        <Header />
-        
-        <Footer />
-        </>
+       <Layout>
+        <h1>Título</h1>
+       </Layout>
     )
 }
