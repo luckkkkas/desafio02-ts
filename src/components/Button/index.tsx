@@ -1,10 +1,11 @@
 import { IButton } from "./types"
-import { ButtonContainer } from "./style"
+import { Button, color } from '@chakra-ui/react'
 
-export const Button  = ({label, onClick }: IButton ):any => {
+export const MButton  = ({label, onClick, color }: IButton ):any => {
     return(
-        <ButtonContainer>
-            <button onClick={onClick}>{label}</button>
-        </ButtonContainer>
+        
+        <Button onClick={onClick} variant={"outline"} colorScheme={color}>
+            {label}
+        </Button>
     )
 }

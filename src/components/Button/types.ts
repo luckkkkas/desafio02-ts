@@ -1,4 +1,7 @@
+import { MouseEventHandler } from "react";
+
 export interface IButton{
     label: string,
-    onClick:any
+    onClick: MouseEventHandler,
+    color: string
 }
