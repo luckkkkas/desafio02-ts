@@ -11,7 +11,7 @@ export const ButtonContainer = styled.button`
     margin: auto;
 
     &&:hover{
-        opacity: 0.7;
+        
         transition: .3s;
 
     }

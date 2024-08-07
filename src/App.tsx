@@ -1,19 +1,20 @@
 import { ChakraProvider } from '@chakra-ui/react'
-import { Home } from './pages/home';
-import { Login } from './pages/login';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+
+import { BrowserRouter } from 'react-router-dom';
 import { AppContextProvider } from './components/AppContext';
+import { createLocalStorage, getAllLocalStorage } from './services/storage';
+import { MainRoutes } from './services/routes';
 
 
 function App() {
+  if(!getAllLocalStorage){
+    createLocalStorage();
+  }
   return (
     <BrowserRouter>
       <AppContextProvider>
         <ChakraProvider>
-        <Routes>
-          <Route path='/' element={<Login />} />
-          <Route path='/home/:id' element={<Home/>} />
-        </Routes>
+          <MainRoutes />
         </ChakraProvider>  
       </AppContextProvider>
     </BrowserRouter>

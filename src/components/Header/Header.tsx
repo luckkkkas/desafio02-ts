@@ -7,11 +7,24 @@ import { ChakraProvider,
   MenuList,
   MenuItem,
   Menu,
-  Heading
- } from "@chakra-ui/react"
- import { ChevronDownIcon } from "@chakra-ui/icons"
+  Heading,
+ } from "@chakra-ui/react" 
+ import {MButton} from "../Button/index"
+import { useContext } from "react"
+import { AppContext } from "../AppContext"
+import { useNavigate } from "react-router-dom"
+import { changeLocalStorage } from "../../services/storage"
 
 export const Header  = () => {
+  const {setIsLoggedIn}= useContext(AppContext)
+  const navigate = useNavigate()
+  const logout = () => {
+    setIsLoggedIn(false)
+    navigate('/')
+    changeLocalStorage({login: false})
+    return
+  }
+
   return(
     <>
     <ChakraProvider>
@@ -20,13 +33,11 @@ export const Header  = () => {
           <Spacer />
           <Heading as={'h1'} color={'whatsapp.100'} m={'auto'}>DIO Banking</Heading>
           <Spacer />
+                    <MButton onClick={()=>logout()} color="red" label="exit"/>
            <Menu>
-              <MenuButton m={'auto'} mr={10} boxSize={10} as={Avatar} rightIcon={<ChevronDownIcon />}>
+              <MenuButton m={'auto'} mr={10} boxSize={10} as={Avatar} >
                   <MenuList>
-                    <MenuItem>Account</MenuItem>
-                    <MenuItem>Change user</MenuItem>
-                    <MenuItem>Settings</MenuItem>
-                    <MenuItem>Exit</MenuItem>
+                    <MenuItem color={'black'}>Item 1</MenuItem>
                   </MenuList>
               </MenuButton>
             </Menu>

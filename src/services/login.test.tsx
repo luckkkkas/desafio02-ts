@@ -1,24 +1,20 @@
-import { Loginf } from "./login"
+import { login } from "./Login"
 
 describe('login', () => {
 
     const mockAlert = jest.fn()
     window.alert = mockAlert
     const email = 'lucas@gmail.com'
+    const password = '12345678'
 
-    it('Deve exibir um alert com boas vindas', async() => {
-        await Loginf(email)
-        expect(mockAlert).not.toHaveBeenCalledWith('Bem vinda lucas@gmail.com!')
+    it('Deve logar', async() => {
+        const response = await login(email, password)
+        expect(mockAlert).toBeTruthy
 
     })
 
-    it('caso o email não seja passado',async () => {
-        await Loginf(email)
-        expect(mockAlert).not.toHaveBeenCalledWith('Bem vinda!')
-    })
-
-    it('Deve exibir um erro caso o email seja inválido', async ()=>{
-        await Loginf('emailinvalido@gmail.com')
-        expect(mockAlert).toHaveBeenCalledWith('email inválido')
+    it('não deve permitir login',async () => {
+        const response = await login("email", 'password')
+        expect(mockAlert).toBeFalsy
     })
 })

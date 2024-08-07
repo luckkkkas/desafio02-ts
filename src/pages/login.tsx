@@ -9,13 +9,30 @@ import {
     Link,
     SimpleGrid
   } from '@chakra-ui/react'
-import { useEffect, useState } from 'react'
+import { useContext, useState } from 'react'
 import { MButton } from '../components/Button'
-import { Loginf } from '../services/login'
+import { login } from '../services/Login'
+import { AppContext } from '../components/AppContext'
+import { useNavigate } from 'react-router-dom'
+import { changeLocalStorage } from '../services/storage'
 
 
 export const Login = () => {
+    const {setIsLoggedIn} = useContext(AppContext)
+    const navigate = useNavigate();
     const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+
+    const validateUser = async (email: string, password: string)  => {
+        const loggedIn = await login(email, password);
+        if(!loggedIn){
+            return null
+        }
+        setIsLoggedIn(true);
+        navigate("home/22");
+        changeLocalStorage({login: true});
+        return 
+    }
 
     return(
         <ChakraProvider>
@@ -27,7 +44,7 @@ export const Login = () => {
             </Center>
             <Stack spacing={3} >
                 <Input variant='flushed' value={email} onChange={(event)=>{setEmail(event.target.value)}} type='email' placeholder="email" />
-                <Input variant='flushed' type='password' placeholder="password" />
+                <Input variant='flushed' type='password' value={password} onChange={(event)=> setPassword(event.target.value)} placeholder="password" />
             </Stack>
             
                 <Flex >
@@ -37,7 +54,7 @@ export const Login = () => {
                         <Link m='auto'href='#'>Create account</Link>
                     </SimpleGrid>
                     <Spacer />
-                    <MButton onClick={()=> Loginf(email)} label="Login" color="pink"/>
+                    <MButton onClick={()=>validateUser(email, password)} label="Login" color="pink"/>
                     <Spacer />
                 </Flex>
             
